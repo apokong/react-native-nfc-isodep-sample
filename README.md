@@ -2,24 +2,31 @@
 
 POC for writing data with isoDep, in React Native for iOS/Android
 
+
 ## Getting Started
 
 > **Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
-## Step 1: Installation
+### Step 1: Installation for react-native-nfc-manager
+
+Follow the instruction to install [react-native-nfc-manager](https://github.com/revtel/react-native-nfc-manager#installation)
+
+### Step 2: Initial Installation
+
+Install modules
 
 ```sh
 yarn install
 cd ios && pod install && cd ../
 ```
 
-## Step 2: Environment for the first time
+### Step 3: Environment for the first time
 
-### For Android
+#### For Android
 
 Open the android folder in Android Studio, and run with emulator
 
-### For iOS
+#### For iOS
 
 Open the ios/RN_NFC_POC.xcworkspace in XCode, or run the following scripts
 
@@ -33,7 +40,7 @@ Run with ios simulator
 
 Since NFC detection is not supported in emulators, we run on real device
 
-### For Android
+#### For Android
 
 Get your device ID with
 
@@ -47,7 +54,7 @@ Run the app onto the plugged in Android device with the device ID detected
 npx react-native run-android --deviceId=1234567890ABCD
 ```
 
-### For iOS
+#### For iOS
 
 Run the app onto the plugged in iOS device with your device name
 
