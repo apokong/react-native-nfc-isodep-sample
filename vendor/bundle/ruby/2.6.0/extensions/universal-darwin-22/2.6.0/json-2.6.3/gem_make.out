@@ -1,0 +1,13 @@
+current directory: /Users/apo.s.kong/Projects/RN_NFC_POC/vendor/bundle/ruby/2.6.0/gems/json-2.6.3/ext/json
+/System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/bin/ruby -I /System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/lib/ruby/2.6.0 -r ./siteconf20230825-28564-35l3pc.rb extconf.rb
+creating Makefile
+
+current directory: /Users/apo.s.kong/Projects/RN_NFC_POC/vendor/bundle/ruby/2.6.0/gems/json-2.6.3/ext/json
+make "DESTDIR=" clean
+
+current directory: /Users/apo.s.kong/Projects/RN_NFC_POC/vendor/bundle/ruby/2.6.0/gems/json-2.6.3/ext/json
+make "DESTDIR="
+make: Nothing to be done for `all'.
+
+current directory: /Users/apo.s.kong/Projects/RN_NFC_POC/vendor/bundle/ruby/2.6.0/gems/json-2.6.3/ext/json
+make "DESTDIR=" install
