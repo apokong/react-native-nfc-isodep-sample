@@ -28,6 +28,7 @@ function App(): JSX.Element {
   const DEFAULT_DATA_CODE = "EAL MKK 3 UE";
   const DEFAULT_KEYS = [15, 1];
   const DEFAULT_MASTER_KEY = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  const DEFAULT_IV = [0, 0, 0, 0, 0, 0, 0, 0];
 
   let _logStr: string = "LOG TEXT\n";
   let _logIdx: number = 0;
@@ -146,7 +147,7 @@ function App(): JSX.Element {
   const encryptDes = (
     message: number[],
     iv: number[],
-    key = DEFAULT_MASTER_KEY
+    key: number[]
   ): number[] => {
     const encrypted: CryptoJS.lib.CipherParams = CryptoJS.DES.encrypt(
       byteArrayToWordArray(message),
@@ -165,7 +166,7 @@ function App(): JSX.Element {
   const decryptDes = (
     message: number[],
     iv: number[],
-    key = DEFAULT_MASTER_KEY
+    key: number[]
   ): number[] => {
     const decrypted: CryptoJS.lib.WordArray = CryptoJS.DES.decrypt(
       { ciphertext: byteArrayToWordArray(message) },
@@ -209,8 +210,8 @@ function App(): JSX.Element {
 
       // Decrypt encrypted RndB (IV - 16 bytes of zeros)
       const key: number[] = DEFAULT_MASTER_KEY;
-      const iv: number[] = key.slice(0, key.length / 2);
-      const rndB: number[] = decryptDes(rndB_enc, iv);
+      const iv: number[] = DEFAULT_IV;
+      const rndB: number[] = decryptDes(rndB_enc, iv, key);
       log("rndB", bytesToHexString(rndB));
 
       // Rotate RndB one byte to the end (RndB')
@@ -226,7 +227,7 @@ function App(): JSX.Element {
       log("rndAB", bytesToHexString(rndAB));
 
       // Encrypt concatenated value (IV - still 16 bytes of zeros)
-      const rndAB_token: number[] = encryptDes(rndAB, iv);
+      const rndAB_token: number[] = encryptDes(rndAB, iv, key);
       log("rndAB_token", bytesToHexString(rndAB_token));
 
       resp = await transceive([
@@ -248,7 +249,7 @@ function App(): JSX.Element {
       log("rndA_enc", bytesToHexString(rndA_enc));
 
       // Decrypt encrypted RndA' (IV - still 16 bytes of zeros)
-      const rndA_dec: number[] = decryptDes(rndA_enc, iv);
+      const rndA_dec: number[] = decryptDes(rndA_enc, iv, key);
       log("rndA_dec", bytesToHexString(rndA_dec));
 
       // Rotate my RndA one byte to the Begining (RndA')
