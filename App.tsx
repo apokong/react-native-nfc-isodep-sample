@@ -182,6 +182,7 @@ function App(): JSX.Element {
   };
 
   const authenIsoDep = async (): Promise<void> => {
+    log("authenIsoDep start");
     try {
       await NfcManager.requestTechnology(NfcTech.IsoDep);
       let tag = await NfcManager.getTag();
